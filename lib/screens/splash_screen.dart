@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:halol_farm/screens/lang_choice_splash.dart';
+import 'package:halol_farm/screens/language_page/lang_choice_splash.dart';
 
 
 class SpalshPage extends StatefulWidget {
