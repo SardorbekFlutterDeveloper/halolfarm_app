@@ -26,22 +26,22 @@ class ContainerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        height: 56.h,
-        width: 343.w,
+        height: 56,
+        width: 343,
         margin: EdgeInsets.only(
           top: top ?? 0,
           bottom: bottom ?? 0,
         ),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(15)),
-          color: color ?? ConsColors.green,
+          color: color ?? ConsColors.instance.green,
         ),
         child: Center(
           child: Text(
             name ?? " ",
             style: TextStyle(
               color: textColor,
-              fontSize: 18.h,
+              fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),

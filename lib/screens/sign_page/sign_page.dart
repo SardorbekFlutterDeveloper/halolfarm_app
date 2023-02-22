@@ -1,8 +1,8 @@
   import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignPage1 extends StatelessWidget {
-  const SignPage1({Key? key}) : super(key: key);
+class SignPage extends StatelessWidget {
+  const SignPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

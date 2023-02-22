@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class LangContainer extends StatelessWidget {
@@ -13,48 +10,42 @@ class LangContainer extends StatelessWidget {
   final Color chiziqRangi;
   const LangContainer(
       {Key? key,
-      this.topBorder,
       this.bottomBorder,
-      this.name,
-      this.flag,
+      this.topBorder,
+      required this.flag,
       required this.rang,
-      required this.chiziqRangi})
+      required this.chiziqRangi,
+      this.name})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+ 
     return Container(
-      height: 80.h,
-      width: 343.w,
+      height: 80,
+      width: 343,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(topBorder ?? 0),
-          bottom: Radius.circular(
-            (bottomBorder ?? 0),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(topBorder ?? 0),
+            bottom: Radius.circular(bottomBorder ?? 0),
           ),
-        ),
-        color: rang,
-        border: Border.all(color: chiziqRangi, width: 1.w),
-      ),
+          color: rang,
+          border: Border.all(color: chiziqRangi, width: 1,),),
       child: Row(
         children: [
-          SizedBox(
-            width: 16.w,
-          ),
+          const SizedBox(width: 16),
           CircleAvatar(
-            radius: 20.h,
+            radius: 20,
             backgroundImage: AssetImage(flag),
           ),
-          SizedBox(
-            width: 20.w,
-          ),
+          const SizedBox(width:18),
           Text(
             name ?? "",
-            style: TextStyle(
-              fontSize: 18.sp,
+            style: const TextStyle(
+              fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
-          )
+          ),
         ],
       ),
     );

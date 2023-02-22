@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:halol_farm/core/constants/color_const.dart';
 import 'package:halol_farm/screens/language_page/lang_choice_splash.dart';
 
 
@@ -15,26 +16,21 @@ class SpalshPage extends StatefulWidget {
 class _SpalshPageState extends State<SpalshPage> {
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     Timer(
       const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Lang_Choice(),
-        ),
-      ),
+      () => Navigator.pushNamedAndRemoveUntil(context, "/lang", (route) => false)
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF058F1A),
+      backgroundColor: ConsColors.instance.green,
       body: Center(
         
-        child: SvgPicture.asset("assets/images/login.svg"),
+        child: SvgPicture.asset("assets/svg/login.svg"),
       ),
     );
   }

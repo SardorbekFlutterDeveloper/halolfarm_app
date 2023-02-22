@@ -1,35 +1,42 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:halol_farm/screens/on_boarding_pages/first_page.dart';
+import 'package:halol_farm/core/constants/color_const.dart';
+import 'package:halol_farm/core/widget/container_button.dart';
+import 'package:halol_farm/screens/language_page/_widget/lang_container_widget.dart';
+
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Lang_Choice extends StatefulWidget {
- Lang_Choice({Key? key}) : super(key: key);
+  Lang_Choice({Key? key}) : super(key: key);
 
   @override
   State<Lang_Choice> createState() => _Lang_ChoiceState();
 }
 
 class _Lang_ChoiceState extends State<Lang_Choice> {
-bool ispressed = false;
-
+  bool ispressed = false;
+  var til = "ru";
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: ConsColors.instance.scaffoldColor,
+      body: Center(
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 88, left: 16, right: 16, bottom: 16),
+          padding: const EdgeInsets.all(
+            16,
+          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.only(left: 138, right: 138),
+              const SizedBox(height: 80, width: 375),
+              
+              SizedBox(
                 child: SvgPicture.asset(
-                  "assets/onboard/logo2.svg",
+                  "assets/svg/logo.svg",
+                  alignment: Alignment.topCenter,
                   height: 30,
                   width: 100,
                 ),
@@ -37,59 +44,82 @@ bool ispressed = false;
               const SizedBox(
                 height: 68,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Tilni tanlang",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 26),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  const Text(
-                    "Dasturni qaysi tilda ishlatishni xohlaysiz?",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
+              Text(
+                'til_tanla'.tr(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 26),
               ),
-              const SizedBox(
-                height: 48,
-              ),
-
-              Container(
-                
-              ),
-
-              const SizedBox(
-                height: 64,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OnBoardingPage(),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.09,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: const Color(0xFF058F1A)),
-                  child: const Center(
-                    child: Text("Keyingisi",
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white)),
-                  ),
+              SizedBox(
+                height: 75,
+                child: Text(
+                  "til_t_sub".tr(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.6),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
                 ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  til = "uz";
+              
+                  context.setLocale(const Locale('uz'));
+                },
+                child: LangContainer(
+                  chiziqRangi: til == "uz"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                  flag: "assets/images/uzb.png",
+                  name: "O'zbek tili",
+                  topBorder: 30.0,
+                  rang: til == "uz"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                ),
+              ),
+              GestureDetector(
+                child: LangContainer(
+                  chiziqRangi: til == "en"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                  flag: "assets/images/uk.png",
+                  name: "English",
+                  rang: til == "en"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                ),
+                onTap: () {
+                  til = "en";
+                  context.setLocale(const Locale('en'));
+                },
+              ),
+              GestureDetector(
+                child: LangContainer(
+                  chiziqRangi: til == "ru"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                  flag: "assets/images/rus.png",
+                  name: "Русский язык",
+                  rang: til == "ru"
+                      ? ConsColors.instance.green.withOpacity(0.3)
+                      : ConsColors.instance.white,
+                  bottomBorder: 30.0,
+                ),
+                onTap: () {
+                  til = "ru";
+                  context.setLocale(const Locale('ru'));
+                },
+              ),
+              const Spacer(),
+              ContainerButton(
+                textColor: ConsColors.instance.white,
+                name: "next".tr(),
+                color: ConsColors.instance.green,
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, "/onBording", (route) => false);
+                },
               ),
             ],
           ),
@@ -98,5 +128,3 @@ bool ispressed = false;
     );
   }
 }
-
-

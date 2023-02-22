@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:halol_farm/router/myrouter.dart';
-import 'package:halol_farm/screens/on_boarding_pages/first_page.dart';
-import 'package:halol_farm/screens/splash_screen.dart';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {
@@ -11,7 +10,13 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale("en"), Locale("ru"), Locale("uz")],
+      supportedLocales: const [
+        Locale("uz"),
+        Locale("en"),
+        Locale("ru", ),
+
+        
+      ],
       path: "assets/lang",
       fallbackLocale: const Locale('uz'),
       startLocale: const Locale('uz'),
@@ -30,7 +35,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         debugShowCheckedModeBanner: false,
-        initialRoute: "/splashPage",
+        initialRoute: "/onBording",
         onGenerateRoute: MyRouter.instance.onGnerateRoute,
       );
     });
